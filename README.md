@@ -14,7 +14,7 @@
 ```bash
 # 1. Clone the repo into your ROS2 workspace
 cd ~/ros2_ws/src
-git clone https://github.com/YOUR_USERNAME/ros2_drone_delivery_workshop.git
+git clone https://github.com/osama-alrawahi/ros2_drone_delivery_workshop.git
 
 # 2. Run the automated setup script
 cd ~/ros2_ws/src/ros2_drone_delivery_workshop
