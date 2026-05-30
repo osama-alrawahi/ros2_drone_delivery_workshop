@@ -182,21 +182,21 @@ NODES=(
 )
 
 ALL_OK=true
+INSTALL_LIB="$WS_DIR/install/drone_delivery_system/lib/drone_delivery_system"
+
 for node in "${NODES[@]}"; do
-    if ros2 run drone_delivery_system "$node" --help &>/dev/null 2>&1 || \
-       ros2 run drone_delivery_system "$node" --ros-args --help &>/dev/null 2>&1 || \
-       python3 -c "import drone_delivery_system.${node}" &>/dev/null 2>&1; then
+    # Fast check: just verify the executable file exists — no need to launch it
+    if [ -f "$INSTALL_LIB/$node" ]; then
         success "  ✓ $node"
     else
-        # Try checking if the script file exists in install
-        if find "$WS_DIR/install" -name "$node" 2>/dev/null | grep -q .; then
-            success "  ✓ $node"
-        else
-            warn  "  ? $node (may need to source again)"
-            ALL_OK=false
-        fi
+        warn "  ✗ $node — not found in $INSTALL_LIB"
+        ALL_OK=false
     fi
 done
+
+if [ "$ALL_OK" = false ]; then
+    warn "Some executables missing. Try: colcon build --packages-select drone_delivery_system"
+fi
 
 # =============================================================================
 # DONE — Print instructions
