@@ -1,0 +1,24 @@
+# DeliverPackage.action
+# Used by /deliver_package action
+#
+# GOAL — what we want the drone to do
+float64 target_latitude
+float64 target_longitude
+string package_id
+string destination_name
+float32 max_speed
+---
+# RESULT — final outcome when mission ends
+bool success
+string message
+float32 delivery_time_seconds
+float32 total_distance_km
+---
+# FEEDBACK — live updates during the mission
+float32 progress_percent
+string current_phase
+float32 estimated_time_remaining
+float64 current_latitude
+float64 current_longitude
+float32 battery_remaining
+string status_message

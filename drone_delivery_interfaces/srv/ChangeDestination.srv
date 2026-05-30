@@ -1,0 +1,12 @@
+# ChangeDestination.srv
+# Used by /change_destination service
+#
+# REQUEST — sent from ground control to the drone
+float64 latitude
+float64 longitude
+string destination_name
+---
+# RESPONSE — sent back from the drone to ground control
+bool success
+string message
+string previous_destination
